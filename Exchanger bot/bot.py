@@ -26,7 +26,8 @@ async def command_start_handler(message: Message) -> None:
 
 
 async def main() -> None:
-    bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    bot = Bot(token=TOKEN, default=DefaultBotProperties(
+        parse_mode=ParseMode.HTML))
 
     await bot.set_my_commands(
         [

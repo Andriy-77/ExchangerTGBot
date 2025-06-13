@@ -5,6 +5,7 @@ from json.decoder import JSONDecodeError
 import os
 import json
 
+
 def get_all_conversions(file_path):
     if not os.path.exists(file_path):
         with open(file_path, "w") as fd:

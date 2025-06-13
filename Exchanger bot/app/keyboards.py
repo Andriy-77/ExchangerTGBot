@@ -1,10 +1,20 @@
 from aiogram.filters.callback_data import CallbackData
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton
+
 BUTTON_LIST_CONVERSION = "Перелік конвертацій"
 BUTTON_CREATE_CONVERSION = "Нова конвертація"
 CURRENCIES = [
-    "USD", "EUR", "UAH", "GBP", "PLN", "CHF", "JPY", "CNY", "CAD", "AUD",
+    "USD",
+    "EUR",
+    "UAH",
+    "GBP",
+    "PLN",
+    "CHF",
+    "JPY",
+    "CNY",
+    "CAD",
+    "AUD",
 ]
 
 
@@ -33,6 +43,7 @@ def conversions_keyboard_markup(conversion_list: list[dict]):
     builder.adjust(1, repeat=True)
     return builder.as_markup()
 
+
 def currency_inline_keyboard(page=0, per_page=5, prefix="cur"):
     builder = InlineKeyboardBuilder()
     start = page * per_page
@@ -41,9 +52,15 @@ def currency_inline_keyboard(page=0, per_page=5, prefix="cur"):
         builder.button(text=cur, callback_data=f"{prefix}:{cur}:{page}")
     nav = []
     if page > 0:
-        nav.append(InlineKeyboardButton(text="⬅️", callback_data=f"{prefix}:prev:{page}"))
+        nav.append(
+            InlineKeyboardButton(
+                text="⬅️", callback_data=f"{prefix}:prev:{page}")
+        )
     if end < len(CURRENCIES):
-        nav.append(InlineKeyboardButton(text="➡️", callback_data=f"{prefix}:next:{page}"))
+        nav.append(
+            InlineKeyboardButton(
+                text="➡️", callback_data=f"{prefix}:next:{page}")
+        )
     if nav:
         builder.row(*nav)
     builder.adjust(1)
